@@ -9,6 +9,7 @@ class Project < ActiveRecord::Base
   after_save :create_gallery
 
   def create_gallery
-       self.gallery.create
+     self.gallery = Gallery.new
+     self.gallery.save
   end
 end

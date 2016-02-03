@@ -1,22 +1,18 @@
 ActiveAdmin.register Project do
   permit_params :title, :description, :year, :images, project_labels_attributes: [:id, :name, :project_id, :label_id, :_destroy]
     
-
-
   controller do 
     def create
-      
       @images =  params[:project][:images]
       params[:project].delete(:images)
-      @project = Project.new(params[:project])
+      @project = Project.new(permitted_params[:project])
       if @project.save
         
         if @images
           @images.each do |img|
-            @project.gallery.project_images.create(image: img)
-            
+            @project.gallery.project_images.create(image: img)  
           end
-          
+          redirect_to admin_projects_path
         end
         
       end

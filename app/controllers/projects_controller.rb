@@ -1,10 +1,8 @@
 class ProjectsController < ApplicationController
 
 
-    def create
-    	ppdfasdf
-    	
-    end
+  def create
+  end
 
 	def index
 		@projects = Project.all
@@ -12,5 +10,10 @@ class ProjectsController < ApplicationController
 
 	def show
 		@project = Project.find(params[:id])
-    end
+  end
+
+  private
+  def project_params
+    require(:project).permit(:title,:description,:year)
+  end
 end
