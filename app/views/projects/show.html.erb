@@ -4,8 +4,10 @@
 	<%= @project.description %>
 	<% @project.labels.each do |label| %>
       <%= label.name %>
-
-
 	<%end%>
+
+  <% @project.gallery.project_images.each do |image| %>
+    <%= image_tag image.url(:medium) %>
+  <% end %>
 </div>
 
