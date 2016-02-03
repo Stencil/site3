@@ -4,7 +4,7 @@ ActiveAdmin.register Project do
   controller do 
     def create
       @images =  params[:project][:images]
-      params[:project].delete(:images)
+      # params[:project].delete(:images)
       @project = Project.new(permitted_params[:project])
       if @project.save
         
@@ -16,6 +16,20 @@ ActiveAdmin.register Project do
         end
         
       end
+    end
+    def update
+      @project = Project.find(params[:id])
+      @images = params[:project][:images]
+      if @project.update(permitted_params[:project])
+        if @images 
+          @project.gallery.project_images.destroy_all
+          @images.each do |img|
+            @project.gallery.project_images.create(image: img)  
+          end
+          redirect_to admin_projects_path
+        end
+      end
+
     end
   end
 
