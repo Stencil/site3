@@ -1,0 +1,11 @@
+<h1><%= @project.title %></h1>
+
+<div>
+	<%= @project.description %>
+	<% @project.labels.each do |label| %>
+      <%= label.name %>
+
+
+	<%end%>
+</div>
+
