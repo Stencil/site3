@@ -6,7 +6,7 @@ class Project < ActiveRecord::Base
   accepts_nested_attributes_for :project_labels, :allow_destroy => true
   # has_attached_file :image, styles: {medium:"200x200", small:"50x50"}
   # validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
-  after_save :create_gallery
+  after_create :create_gallery
 
   def create_gallery
      self.gallery = Gallery.new

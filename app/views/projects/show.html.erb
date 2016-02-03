@@ -7,7 +7,7 @@
 	<%end%>
 
   <% @project.gallery.project_images.each do |image| %>
-    <%= image_tag image.url(:medium) %>
+    <%= image_tag image.image.url(:medium) %>
   <% end %>
 </div>
 

@@ -21,13 +21,14 @@ ActiveAdmin.register Project do
       @project = Project.find(params[:id])
       @images = params[:project][:images]
       if @project.update(permitted_params[:project])
-        if @images 
+        if @images
           @project.gallery.project_images.destroy_all
           @images.each do |img|
             @project.gallery.project_images.create(image: img)  
           end
-          redirect_to admin_projects_path
+          return redirect_to admin_projects_path
         end
+        return redirect_to admin_projects_path
       end
 
     end
